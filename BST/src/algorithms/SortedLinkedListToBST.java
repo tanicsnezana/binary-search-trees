@@ -27,7 +27,7 @@ public class SortedLinkedListToBST {
 		return createBST(head, head.size());
 	}
 	
-	public void preOrder(BSTNode<Integer> root) {
+	public static void preOrder(BSTNode<Integer> root) {
         if (root == null) {
             return;
         }
@@ -37,7 +37,7 @@ public class SortedLinkedListToBST {
         preOrder(root.right);
     }
 	
-	public void inOrder(BSTNode<Integer> root) {
+	public static void inOrder(BSTNode<Integer> root) {
 		if(root == null) {
 			return;
 		}
