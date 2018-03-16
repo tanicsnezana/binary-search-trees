@@ -42,4 +42,54 @@ public class KthSmallestNodeInBST {
 		
 		return null;
 	}
+	
+	
+	public BSTNode<Integer> kthSmallestUsingMorrisTraversal(BSTNode<Integer> root, int k) {
+		if(root == null || k <= 0) {
+			return null;
+		}
+		
+		int count = 0;
+		BSTNode<Integer> curr = root, kthSmallest = null;
+		
+		while(curr != null) {
+			
+			if(curr.left == null) {
+				count++;
+				
+				if(count == k) {
+					kthSmallest = curr;
+				}
+				
+				curr = curr.right;
+			}
+			else {
+				BSTNode<Integer> pre = curr.left;
+				
+				while(pre.right != null && pre != curr) {
+					pre = pre.right;
+				}
+				
+				//Making inorder succ
+				
+				if(pre.right != null) {
+					pre.right = curr;
+					curr = curr.left;
+				}
+				else {
+					pre.right = null;
+					
+					count++;
+					
+					if(count == k) {
+						kthSmallest = curr;
+					}
+					
+					curr = curr.right;
+				}
+			}
+		}
+		
+		return kthSmallest;
+	}
 }
